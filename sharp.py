@@ -1,15 +1,4 @@
 #!/usr/bin/env python3
-# sharp.py - SHARP (final)
-"""
-SHARP - Async subdomain finder
-Features:
- - mode: passive | brute-force | both (default both)
- - passive: crt.sh (tagged [CRT.SH]) + c99 (tagged [C99])
- - brute-force: wordlist (tagged [B-F])
- - if -o given -> results are written only to file (not printed)
- - press Enter during run -> shows brute-force progress (count + percent)
- - colorful figlet banner (RED) + fixed GitHub link in red
-"""
 
 from __future__ import annotations
 import argparse
@@ -67,7 +56,7 @@ async def print_banner():
     # banner in red
     print(colorize_text(fig))
     # GitHub link also in red
-    print(f"{BOLD}\x1b[31mGitHub: https://github.com/youruser/sharp{RESET}\n")
+    print(f"{BOLD}\x1b[31mGitHub: https://github.com/KARA-git/SHARP{RESET}\n")
 
 # ---------------- blocking DNS resolver (run in executor) ----------------
 def blocking_getaddrinfo(name: str):
@@ -145,15 +134,7 @@ async def worker_loop(domain: str,
                       processed_dict: dict,
                       processed_lock: asyncio.Lock,
                       source_map: Dict[str, Optional[str]]):
-    """
-    Processes items from queue.
-    Special item tokens:
-      - "__FQDN__<fqdn>" -> resolve that full fqdn
-      - "__CRT__<fqdn>"  -> resolve and mark as from crt.sh
-      - "__C99__<fqdn>"  -> from c99
-      - "__WL__<label>"  -> from wordlist (label only)
-      - normal label      -> label-only (will become label.domain)
-    """
+   
     while True:
         item = await q.get()
         if item is None:
@@ -264,7 +245,7 @@ async def main_async(domain: str, wordlist_path: Optional[str], concurrency: int
         # open in append mode for incremental writes; will canonical-overwrite at end
         output_handle = open(output_path, "a", encoding="utf-8")
         PRINT_RESULTS = False
-        print(f"waiting for adding results to {output_path}")
+        print(f"Waiting for adding results to {output_path}....")
 
     loop = asyncio.get_event_loop()
     executor = ThreadPoolExecutor(max_workers=max(32, concurrency * 2))
