@@ -5,6 +5,8 @@
 SHARP (Subdomain Hunter Async & Rapid Probe) — asinxron subdomain tapma alətidir.  
 Həm **passive** (crt.sh, subdomainfinder.c99.nl), həm də **brute-force** üsulları ilə subdomainləri kəşf edə bilir.
 
+**GitHub:** [https://github.com/KARA-git/SHARP](https://github.com/KARA-git/SHARP)
+
 ---
 
 ## Features
@@ -25,9 +27,9 @@ Həm **passive** (crt.sh, subdomainfinder.c99.nl), həm də **brute-force** üsu
 
 ## Installation
 
-Clone this repository:
-
 ```bash
-git clone https://github.com/youruser/sharp.git
-cd sharp
-
+git clone https://github.com/KARA-git/SHARP.git
+cd SHARP
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
